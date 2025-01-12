@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -108,3 +109,7 @@ def get_story(story_id):
         return jsonify(story)
     else:
         return jsonify({"error": "Story not found"}), 404
+
+if __name__ == "__main__":
+    port = int(os.getenv('PORT', 5000))  # Default to 5000 if PORT is not set
+    app.run(host="0.0.0.0", port=port)  # Bind to all interfaces, and use the specified port
